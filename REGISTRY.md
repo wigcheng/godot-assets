@@ -10,3 +10,5 @@
 | shader.building | shaders/building.gdshader | — | — | ok  |  |
 | shader.road | shaders/road.gdshader | — | — | ok  |  |
 | mocap.dream-wings | mocap/dream-wings/mocap.json | derived, internal only | 699 | ok  |  |
+| kit.rooftop | buildings/rooftop_kit.gd | ours MIT | tank/antenna/shed/parapet/trees/AC/balconies | ok no FPS change | triplanar repeats-per-metre; Tiles074 ≥4/m only |
+| shader.building.day | shaders/building.gdshader night=0 | ours | 2 samplers | ok | no return in fragment() |

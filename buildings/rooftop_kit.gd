@@ -27,12 +27,14 @@ static func mat(col: Color, rough := 0.7, metal := 0.0) -> StandardMaterial3D:
 	m.metallic = metal
 	return m
 
+# scale = texture repeats per metre (triplanar, world space): boxes of any size get the same texel density.
 static func tmat(name: String, scale := 1.0, tint := Color(1, 1, 1), rough := 0.85) -> StandardMaterial3D:
 	var m := StandardMaterial3D.new()
 	m.albedo_texture = tex(TEX + name + "_color.jpg")
 	m.albedo_color = tint
 	m.roughness_texture = tex(TEX + name + "_rough.jpg")
 	m.roughness = rough
+	m.uv1_triplanar = true
 	m.uv1_scale = Vector3(scale, scale, scale)
 	return m
 
@@ -96,7 +98,7 @@ static func ac_unit(parent: Node3D, p: Vector3, yaw := 0.0) -> void:
 	cyl(n, 0.02, 0.6, Vector3(0.44, -0.1, 0.1), pipe, Vector3(0, 0, 90))
 
 static func metal_shed(parent: Node3D, p: Vector3, size: Vector3) -> void:
-	var wall := tmat("MetalPlates006", 0.8, Color(0.55, 0.6, 0.66), 0.5)
+	var wall := tmat("MetalPlates006", 1.5, Color(0.55, 0.6, 0.66), 0.5)
 	box(parent, Vector3(size.x, size.y, size.z), p + Vector3(0, size.y / 2.0, 0), wall)
 	var roofm := mat(Color(0.35, 0.4, 0.5), 0.55, 0.4)
 	var prism := PrismMesh.new()
@@ -105,7 +107,7 @@ static func metal_shed(parent: Node3D, p: Vector3, size: Vector3) -> void:
 	box(parent, Vector3(0.9, 1.9, 0.04), p + Vector3(0, 0.95, size.z / 2.0 + 0.02), mat(Color(0.3, 0.32, 0.35), 0.5))
 
 static func parapet(parent: Node3D, roof: float, h: float) -> void:
-	var tile := tmat("Tiles074", 1.2, Color(0.85, 0.82, 0.78))
+	var tile := tmat("Tiles074", 4.0, Color(0.62, 0.58, 0.55))   # 4 repeats/m: small mosaic tiles, darker tint so the pattern reads
 	var cap := mat(Color(0.8, 0.8, 0.78), 0.7)
 	var e := roof / 2.0
 	for s in [[Vector3(0, h / 2.0, e), Vector3(roof, h, 0.3)], [Vector3(0, h / 2.0, -e), Vector3(roof, h, 0.3)], [Vector3(e, h / 2.0, 0), Vector3(0.3, h, roof)], [Vector3(-e, h / 2.0, 0), Vector3(0.3, h, roof)]]:

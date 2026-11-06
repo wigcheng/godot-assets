@@ -89,6 +89,31 @@
    "board": {
     "status": "ok"
    }
+  },
+  {
+   "id": "kit.rooftop",
+   "path": "buildings/rooftop_kit.gd",
+   "kind": "kit",
+   "license": "ours MIT (textures CC0)",
+   "board": {
+    "fps_1080p": 7.5,
+    "status": "ok",
+    "note": "tank/antenna/shed/parapet/trees/AC + 46-building balcony dressing: no FPS change"
+   },
+   "traps": [
+    "use triplanar (repeats per metre); per-face box UVs stretch textures",
+    "Tiles074 checker reads as giant squares on walls: use it only at ≥4/m"
+   ]
+  },
+  {
+   "id": "shader.building.day",
+   "path": "shaders/building.gdshader (night=0)",
+   "kind": "shader",
+   "samplers": 2,
+   "board": {
+    "status": "ok",
+    "note": "tile grout + window frames in-shader; 'return' in fragment() is a compile error"
+   }
   }
  ]
 }

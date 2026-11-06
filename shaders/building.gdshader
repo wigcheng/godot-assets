@@ -28,6 +28,11 @@ void fragment() {
 	float lit = step(0.55, hash(floor(cell) + icol.a * 97.0));
 	vec3 wc = mix(vec3(1.0, 0.75, 0.45), vec3(0.6, 0.85, 1.0), hash(floor(cell) * 1.7 + icol.a * 13.0));
 	float band = step(f.y, 0.1) * side * step(4.0, wpos.y);
+	// Taiwan tiled facade: grout grid (45 x 30 cm tiles) and a lighter frame ring around each window
+	float grout = max(step(fract(h / 0.45), 0.07), step(fract(wpos.y / 0.30), 0.10)) * side * step(0.5, 1.0 - win);
+	float frame = step(0.21, f.x) * step(f.x, 0.79) * step(0.31, f.y) * step(f.y, 0.84) * side * step(4.0, wpos.y) * (1.0 - win);
+	base = mix(base, base * 0.72, grout * 0.8);
+	base = mix(base, vec3(0.9, 0.9, 0.88), frame * 0.85);
 	// roof: flat dark concrete (no texture detail needed from the chase camera)
 	base = mix(base, vec3(0.16, 0.16, 0.17), 1.0 - side);
 	ALBEDO = mix(base, mix(vec3(0.25, 0.3, 0.36), vec3(0.03, 0.04, 0.06), night), win) * (1.0 - 0.45 * band);
