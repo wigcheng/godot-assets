@@ -23,12 +23,18 @@ const VitChar = preload("res://vitchar.gd")
 var ch := VitChar.new()
 add_child(ch)
 ch.setup({"shirt": Color(0.9, 0.9, 0.9), "pants": Color(0.4, 0.5, 0.7), "shoes": Color(0.1, 0.1, 0.1), "cap": true, "brows": true, "hair": false})
-# pose A: the dream.gd joint convention (degrees; joints chest head lsh lel rsh rel lhip lknee rhip rknee hips)
+# pose A: set_joint(joint, Vector3(pitch, yaw, roll) in degrees). Limbs hang straight down at (0,0,0).
+#   joints: chest head lsh lel rsh rel lhip lknee rhip rknee hips   (l = character's left, el = elbow, knee = shin)
+#   raise LEFT arm sideways/up:  ch.set_joint("lsh", Vector3(-10, 0, 125))     (z rotates the arm out from the body; left +, right -)
+#   raise RIGHT arm:             ch.set_joint("rsh", Vector3(-10, 0, -125))
+#   arm straight forward:        ch.set_joint("lsh", Vector3(-90, 0, 0))
+#   bend elbow 60°:              ch.set_joint("lel", Vector3(-60, 0, 0))
+#   lean torso forward 15°:      ch.set_joint("chest", Vector3(15, 0, 0));  turn head left 20°: ch.set_joint("head", Vector3(0, 20, 0))
 ch.set_joint("lsh", Vector3(-10, 0, 125))
 # pose B: motion capture (see ../../mocap/README.md)
 ch.apply_dirs(frame["dirs"])
 # face
-ch.shape("Happy", 0.6); ch.shape("Eyes_Closed_Max", 1.0)
+ch.shape("Happy", 0.6)              # smile = "Happy" (open smile) or "Smile_Lips_Closed"; blink = "Eyes_Closed_Max" 1.0; talk = visemes + "Jaw_Lower"
 ```
 Measured: 1080p 7.5 FPS with the rooftop scene; load ≈ 4 s per character; two characters fine (only one visible at a time).
 Lighting that looks right: key SpotLight 3.0 warm, fill Omni 0.7 on the camera, rim 2.0; `rim_enabled` on the skin fakes the missing SSS.

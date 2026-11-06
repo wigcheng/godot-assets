@@ -3,6 +3,7 @@ shader_type spatial;
 // window grid with random lit windows, a dark band at every floor line (balcony slab).
 uniform sampler2D wall_a : source_color, filter_linear_mipmap, repeat_enable;
 uniform sampler2D wall_b : source_color, filter_linear_mipmap, repeat_enable;
+uniform float night : hint_range(0.0, 1.0) = 1.0;   // 0 = daytime: no lit windows, glassy dark panes
 
 float hash(vec2 p) {
 	vec3 p3 = fract(vec3(p.xyx) * 0.1031);
@@ -29,8 +30,8 @@ void fragment() {
 	float band = step(f.y, 0.1) * side * step(4.0, wpos.y);
 	// roof: flat dark concrete (no texture detail needed from the chase camera)
 	base = mix(base, vec3(0.16, 0.16, 0.17), 1.0 - side);
-	ALBEDO = mix(base, vec3(0.03, 0.04, 0.06), win) * (1.0 - 0.45 * band);
-	EMISSION = wc * win * lit * 1.4;
-	ROUGHNESS = 0.85;
+	ALBEDO = mix(base, mix(vec3(0.25, 0.3, 0.36), vec3(0.03, 0.04, 0.06), night), win) * (1.0 - 0.45 * band);
+	EMISSION = wc * win * lit * 1.4 * night;
+	ROUGHNESS = mix(0.85, 0.25, win);
 	METALLIC = 0.0;
 }
