@@ -114,6 +114,17 @@
     "status": "ok",
     "note": "tile grout + window frames in-shader; 'return' in fragment() is a compile error"
    }
+  },
+  {
+   "id": "vehicle.procar",
+   "path": "vehicles/procar.gd",
+   "kind": "vehicle",
+   "license": "ours MIT",
+   "tris": "~40 primitives",
+   "board": {
+    "status": "ok",
+    "note": "10 cars in the chase scene + balconies on ~120 near buildings: stills fine; wheels/rims/glass/lights read at 1080p"
+   }
   }
  ]
 }
