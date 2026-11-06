@@ -1,0 +1,94 @@
+{
+ "target": "i.MX8MP GC7000UL, Godot 4.7.2 Mobile renderer",
+ "updated": "2026-11-06",
+ "assets": [
+  {
+   "id": "char.vitruvian",
+   "path": "characters/vitruvian",
+   "kind": "character",
+   "license": "CC0 (code MIT)",
+   "tris": "~36k body+head",
+   "textures": "10 × 2K",
+   "board": {
+    "fps_1080p": 7.5,
+    "status": "ok"
+   },
+   "traps": [
+    "strip COLOR/TEXCOORD_1-3 from head GLB",
+    "hair cards never render",
+    "sclera needs ALPHA_SCISSOR",
+    "no SSS: use rim"
+   ]
+  },
+  {
+   "id": "char.vitruvian.hair_cards",
+   "path": "characters/vitruvian (upstream hairtool_cards.glb)",
+   "kind": "hair",
+   "license": "CC0",
+   "tris": "162k verts alpha cards",
+   "board": {
+    "status": "fail",
+    "note": "no frame within 15 min, twice"
+   }
+  },
+  {
+   "id": "prop.scooter",
+   "path": "props/scooter.gd",
+   "kind": "prop",
+   "license": "ours MIT",
+   "tris": "7 primitives",
+   "board": {
+    "status": "ok",
+    "note": "40 instances free"
+   }
+  },
+  {
+   "id": "mat.ambientcg",
+   "path": "materials/ambientcg",
+   "kind": "texture",
+   "license": "CC0",
+   "textures": "5 × 1K color+rough",
+   "board": {
+    "status": "ok"
+   }
+  },
+  {
+   "id": "signs.gen",
+   "path": "signs/gen_signs.py",
+   "kind": "generator",
+   "license": "ours (font OFL)",
+   "board": {
+    "status": "ok",
+    "note": "emission ≤ 0.6 or glow whites out"
+   }
+  },
+  {
+   "id": "shader.building",
+   "path": "shaders/building.gdshader",
+   "kind": "shader",
+   "samplers": 2,
+   "board": {
+    "status": "ok"
+   }
+  },
+  {
+   "id": "shader.road",
+   "path": "shaders/road.gdshader",
+   "kind": "shader",
+   "samplers": 3,
+   "board": {
+    "status": "ok"
+   }
+  },
+  {
+   "id": "mocap.dream-wings",
+   "path": "mocap/dream-wings/mocap.json",
+   "kind": "mocap",
+   "license": "derived, internal only",
+   "frames": 699,
+   "board": {
+    "status": "ok"
+   }
+  }
+ ]
+}

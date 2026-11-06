@@ -1,0 +1,12 @@
+# regenerable or oversized: upstream clones, derived GLB/textures, media, models
+characters/*/upstream
+characters/*/out/
+*.glb
+*.avi
+*.mp4
+*.m4a
+*.wav
+*.task
+__pycache__/
+# generated signboards (python3 signs/gen_signs.py)
+signs/out/
