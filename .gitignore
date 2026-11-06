@@ -10,3 +10,4 @@ characters/*/out/
 __pycache__/
 # generated signboards (python3 signs/gen_signs.py)
 signs/out/
+vehicles/kenney-city-builder/
